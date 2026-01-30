@@ -82,7 +82,7 @@ void OpticalSimulationEventAction::EndOfEventAction(const G4Event *evt) {
     if (!StatsScintillator.energy.empty())
         runac->UpdateStatisticsScintillator(StatsScintillator);
 
-    if (StatsOptical.ScintillationSc > 0) {
+    if (StatsOptical.ScintillationSc < 0) {
         StatsOptical.IncidentE = StatsInput.energy;
         StatsOptical.DepositTotal = StatsScintillator.deposited_energy_event +
                                     StatsZnS.deposited_energy_event;
@@ -169,7 +169,6 @@ void OpticalSimulationEventAction::EndOfEventAction(const G4Event *evt) {
             //<< Absfrac + Bulkfrac + Escfrac + Failfrac + efficiency << " % "
             << G4endl;
         G4cout << "" << G4endl;
-
-        runac->UpdateStatisticsOptical(StatsOptical);
     }
+    runac->UpdateStatisticsOptical(StatsOptical);
 }

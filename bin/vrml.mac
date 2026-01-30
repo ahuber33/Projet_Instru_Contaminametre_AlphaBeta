@@ -1,44 +1,37 @@
 ###################################################################
 ################# PART FOR MESSENGER INFORMATION ##################
 ###################################################################
-/OpticalSimulation/geometry/setScintillatorLength 10 mm           # Set Scintillator Length
-/OpticalSimulation/geometry/setScintillatorWidth 10 mm            # Set Scintillator Width
-/OpticalSimulation/geometry/setScintillatorThickness 0.1 mm       # Set Scintillator Thickness
-/OpticalSimulation/geometry/setScintillatorRadius 10 mm           # Set Scintillator Radius
+/OpticalSimulation/geometry/setScintillatorLength 100 mm           # Set Scintillator Length
+/OpticalSimulation/geometry/setScintillatorWidth 100 mm            # Set Scintillator Width
+/OpticalSimulation/geometry/setScintillatorThickness 1 mm       # Set Scintillator Thickness
+/OpticalSimulation/materials/setScintillatorLY 10000              # Set Scintillator LY
 
-/OpticalSimulation/geometry/setZnSLength 10 mm                    # Set ZnS Length
-/OpticalSimulation/geometry/setZnSWidth 10 mm                     # Set ZnS Width
+/OpticalSimulation/geometry/setZnSLength 100 mm                    # Set ZnS Length
+/OpticalSimulation/geometry/setZnSWidth 100 mm                     # Set ZnS Width
 /OpticalSimulation/geometry/setZnSThickness 0.1 mm                # Set ZnS Thickness
-/OpticalSimulation/geometry/setZnSRadius 10 mm                    # Set ZnS Radius
+/OpticalSimulation/materials/setZnSLY 44000                       # Set ZnS:Ag LY
 
-/OpticalSimulation/geometry/setDetectorLength 10 mm              # Set Detector Length
-/OpticalSimulation/geometry/setDetectorWidth 10 mm               # Set Detector Width
-/OpticalSimulation/geometry/setDetectorThickness 0.1 mm          # Set Detector Thickness
-/OpticalSimulation/geometry/setDetectorRadius 10 mm              # Set Detector Radius
-
-/OpticalSimulation/display/setStatusDisplayGeometry 0                # Display full geometry (1) or simplified (0)
-/OpticalSimulation/display/setStatusDisplayQuadrupoles 1             # Display quadrupoles (1) or not (0)
-
-/OpticalSimulation/display/setStatusDisplayCollimators 1             # Display collimators (1) or not (0)
-/OpticalSimulation/display/setStatusDisplayGDMLCollimators 0         # Display collimators GDML (1) or not with fake modifiable G4Box (0)
+/OpticalSimulation/geometry/setDetectorDistance 10 mm           # Set Detector Distance
 
 
 /run/reinitializeGeometry                                         # Apply geometry changes
 
 
 /OpticalSimulation/step/setVerbose 0
-/OpticalSimulation/step/setPhotonTrackStatus true
+/OpticalSimulation/step/setPhotonTrackStatus true                   # Activate (true) or not the tracking of optical photons
 
 /tracking/verbose 0                                               # Enable or not detailed tracking output
 /run/verbose 1                                                    # Enable or not verbose run output
+
 
 
 ###################################################################
 ########## PART TO SIMULATE PARTICLE WITH GPS (no setgun) #########
 ###################################################################
 /gps/number 1                                                     # Generate 1 particle
-/gps/particle geantino                                            # Set particle type
+/gps/particle e-                                                  # Set particle type
 /gps/pos/type Point                                               # Particle generated at a point
-/gps/pos/centre 10 0.0 10 mm                                      # Particle start position
-/gps/direction 0.0 1.0 0.0                                        # Particle direction along Y-axis
-/gps/energy 250. MeV                                              # Particle energy
+/gps/pos/centre 0.0 0.0 -100.0 mm                                      # Particle start position
+/gps/direction 0.0 0.0 1.0                                        # Particle direction along Y-axis
+/gps/energy 2. MeV                                              # Particle energy
+

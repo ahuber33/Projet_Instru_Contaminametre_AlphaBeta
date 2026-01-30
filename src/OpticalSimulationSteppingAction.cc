@@ -286,7 +286,7 @@ void UpdateSc(RunTallySc &tally, G4float x, G4float y, G4float z,
         tally.AddTotalDepositedEnergy(tally.GetDepositedEnergy());
         tally.ResetDepositedEnergy();
         tally.ResetFlag();
-        G4cout << "RESET SC" << G4endl;
+        // G4cout << "RESET SC" << G4endl;
     }
 }
 
