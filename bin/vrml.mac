@@ -1,9 +1,19 @@
+# ------------------------- VISUALIZATION -------------------------
+/vis/open OGL 600x600-0+0                                         # Open an OpenGL viewer with a 600x600 pixel window
+/vis/drawVolume                                                   # Draw the full geometry
+#/vis/viewer/set/style wireframe                                  # (optional) Set geometry to wireframe style
+/vis/viewer/set/viewpointThetaPhi 0 0                             # Set the camera viewpoint angles theta=0, phi=0
+/vis/viewer/set/upVector 1 0 0                                    # Set the camera "up" vector
+/vis/viewer/set/viewpointVector -0.99 0 0.01                      # Set the camera pointing vector
+/vis/viewer/zoom 1.                                               # Set initial zoom to 1x
+
+
 ###################################################################
 ################# PART FOR MESSENGER INFORMATION ##################
 ###################################################################
 /OpticalSimulation/geometry/setScintillatorLength 100 mm           # Set Scintillator Length
 /OpticalSimulation/geometry/setScintillatorWidth 100 mm            # Set Scintillator Width
-/OpticalSimulation/geometry/setScintillatorThickness 1 mm       # Set Scintillator Thickness
+/OpticalSimulation/geometry/setScintillatorThickness 1 mm          # Set Scintillator Thickness
 /OpticalSimulation/materials/setScintillatorLY 10000              # Set Scintillator LY
 
 /OpticalSimulation/geometry/setZnSLength 100 mm                    # Set ZnS Length
@@ -11,27 +21,25 @@
 /OpticalSimulation/geometry/setZnSThickness 0.1 mm                # Set ZnS Thickness
 /OpticalSimulation/materials/setZnSLY 44000                       # Set ZnS:Ag LY
 
-/OpticalSimulation/geometry/setDetectorDistance 10 mm           # Set Detector Distance
+/OpticalSimulation/geometry/setDetectorDistance 10 mm             # Set Detector Distance
 
+/run/reinitializeGeometry                                           # Apply geometry changes
+/run/physicsModified                                                # Notify Geant4 physics has changed
 
-/run/reinitializeGeometry                                         # Apply geometry changes
-
-
+# ------------------------- PHOTON TRACKING (Batch, no VIS) ------------------
+/tracking/storeTrajectory 1                                         # Force storage of all trajectories
 /OpticalSimulation/step/setVerbose 0
-/OpticalSimulation/step/setPhotonTrackStatus true                   # Activate (true) or not the tracking of optical photons
+/OpticalSimulation/step/setPhotonTrackStatus true                  # Track optical photons
 
-/tracking/verbose 0                                               # Enable or not detailed tracking output
-/run/verbose 1                                                    # Enable or not verbose run output
-
-
+/tracking/verbose 0                                                 # Step-by-step tracking output
+/run/verbose 1                                                      # Run output
 
 ###################################################################
 ########## PART TO SIMULATE PARTICLE WITH GPS (no setgun) #########
 ###################################################################
-/gps/number 1                                                     # Generate 1 particle
-/gps/particle e-                                                  # Set particle type
-/gps/pos/type Point                                               # Particle generated at a point
-/gps/pos/centre 0.0 0.0 -100.0 mm                                      # Particle start position
-/gps/direction 0.0 0.0 1.0                                        # Particle direction along Y-axis
-/gps/energy 2. MeV                                              # Particle energy
-
+/gps/number 1                                                       # Generate 1 particle
+/gps/particle e-                                                    # Set particle type
+/gps/pos/type Point                                                 # Particle generated at a point
+/gps/pos/centre 0.0 0.0 -100.0 mm                                   # Particle start position
+/gps/direction 0.0 0.0 1.0                                         # Particle direction along Z-axis
+/gps/energy 2. MeV                                                  # Particle energy

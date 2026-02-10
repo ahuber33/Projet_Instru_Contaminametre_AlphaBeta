@@ -9,7 +9,7 @@
 /vis/viewer/set/auxiliaryEdge true                                # Display auxiliary edges for better visibility
 #/vis/set/lineWidth 2                                             # (optional) Set line width
 /vis/viewer/set/hiddenMarker true                                 # Enable hidden marker display
-/vis/scene/add/trajectories smooth                                # Add smoothed particle trajectories
+#/vis/scene/add/trajectories smooth                                # Add smoothed particle trajectories
 /vis/scene/endOfEventAction accumulate                            # Accumulate trajectories from multiple events
 
 # ------------------------- AXES / SCALE / INFO -------------------
@@ -25,11 +25,11 @@
 # /vis/scene/endOfEventAction accumulate 10                       # (optional) Accumulate limited number of events
 # /vis/scene/endOfEventAction refresh                             # (optional) Refresh scene each event
 
-/vis/scene/add/hits                                               # Display hits
+#/vis/scene/add/hits                                               # Display hits
 /tracking/storeTrajectory 1                                       # Store particle trajectories for visualization
 
 # ------------------------- GEOMETRY TEST -------------------------
-/geometry/test/run                                                # Run test geometry
+#/geometry/test/run                                                # Run test geometry
 #/geometry/test/line_test                                         # (optional) Line test
 /vis/scene/add/trajectories smooth                                # Add smoothed trajectories
 
@@ -50,6 +50,7 @@
 
 
 /run/reinitializeGeometry                                         # Apply geometry changes
+/run/physicsModified
 
 
 /OpticalSimulation/step/setVerbose 0
@@ -70,4 +71,4 @@
 /gps/direction 0.0 0.0 1.0                                        # Particle direction along Y-axis
 /gps/energy 2. MeV                                              # Particle energy
 
-/run/beamOn 1                                                     # Start simulation for 1 particle
+#/run/beamOn 1                                                     # Start simulation for 1 particle

@@ -14,9 +14,6 @@
 using namespace CLHEP;
 
 const G4String OpticalSimulationMaterials::path = "../simulation_input_files/";
-std::mutex materialMutex;
-
-OpticalSimulationMaterials *OpticalSimulationMaterials::fgInstance = nullptr;
 
 OpticalSimulationMaterials::OpticalSimulationMaterials() : fMaterialsList{} {
 
@@ -762,11 +759,11 @@ void OpticalSimulationMaterials::printMaterialProperties(
 }
 
 OpticalSimulationMaterials *OpticalSimulationMaterials::getInstance() {
-    static OpticalSimulationMaterials materials;
-    if (fgInstance == nullptr) {
-        fgInstance = &materials;
+    static G4ThreadLocal OpticalSimulationMaterials* instance = nullptr;
+    if (!instance) {
+        instance = new OpticalSimulationMaterials();
     }
-    return fgInstance;
+    return instance;
 }
 
 G4double OpticalSimulationMaterials::wavelengthNmToEnergy(G4double wavelength) {

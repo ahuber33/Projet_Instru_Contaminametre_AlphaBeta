@@ -39,7 +39,6 @@ class OpticalSimulationMaterials {
     static const G4String path;
 
     std::vector<G4Material *> fMaterialsList;
-    static OpticalSimulationMaterials *fgInstance;
     G4double wavelengthNmToEnergy(G4double wavelength);
     G4double energyToWavelangthNm(G4double energy);
     const G4int TAB_COLUMN_1 = 25;
